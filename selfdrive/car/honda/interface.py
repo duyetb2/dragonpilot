@@ -152,7 +152,7 @@ class CarInterface(CarInterfaceBase):
       ret.mass = 3410. * CV.LB_TO_KG + STD_CARGO_KG
       ret.wheelbase = 2.66
       ret.centerToFront = ret.wheelbase * 0.41
-      ret.steerRatio = 16.0  # 12.3 is spec end-to-end
+      ret.steerRatio = 16.5  # 12.3 is spec end-to-end
       if eps_modified:
         # stock request input values:     0x0000, 0x00DB, 0x01BB, 0x0296, 0x0377, 0x0454, 0x0532, 0x0610, 0x067F
         # stock request output values:    0x0000, 0x0500, 0x0A15, 0x0E6D, 0x1100, 0x1200, 0x129A, 0x134D, 0x1400
