@@ -182,7 +182,7 @@ class CarInterface(CarInterfaceBase):
       stop_and_go = True
       ret.safetyConfigs[0].safetyParam = 73
       ret.wheelbase = 2.68986
-      ret.steerRatio = 12.8
+      ret.steerRatio = 12.80
       tire_stiffness_factor = 0.7933
       ret.mass = 3585. * CV.LB_TO_KG + STD_CARGO_KG # Average between ICE and Hybrid
       ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.11], [0.016]]
@@ -230,10 +230,10 @@ class CarInterface(CarInterfaceBase):
       stop_and_go = True
       ret.safetyConfigs[0].safetyParam = 73
       ret.wheelbase = 3.03
-      ret.steerRatio = 15.5
+      ret.steerRatio = 15
       tire_stiffness_factor = 0.444
       ret.mass = 4590. * CV.LB_TO_KG + STD_CARGO_KG
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.19], [0.02]]
+      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.1], [0.01]]
       ret.lateralTuning.pid.kf = 0.00007818594
 
     elif candidate == CAR.LEXUS_IS:
@@ -343,10 +343,10 @@ class CarInterface(CarInterfaceBase):
     smartDsu = 0x2FF in fingerprint[0]
     # In TSS2 cars the camera does long control
     found_ecus = [fw.ecu for fw in car_fw]
-    ret.enableDsu = (len(found_ecus) > 0) and (Ecu.dsu not in found_ecus) and (candidate not in NO_DSU_CAR)
+    ret.enableDsu = False #** (len(found_ecus) > 0) and (Ecu.dsu not in found_ecus) and (candidate not in NO_DSU_CAR)
     ret.enableGasInterceptor = 0x201 in fingerprint[0]
     # if the smartDSU is detected, openpilot can send ACC_CMD (and the smartDSU will block it from the DSU) or not (the DSU is "connected")
-    ret.openpilotLongitudinalControl = smartDsu or ret.enableDsu or candidate in TSS2_CAR
+    ret.openpilotLongitudinalControl = False #** smartDsu or ret.enableDsu or candidate in TSS2_CAR
     if Params().get_bool('dp_atl') and not Params().get_bool('dp_atl_op_long'):
       ret.openpilotLongitudinalControl = False
 
